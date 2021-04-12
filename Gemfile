@@ -14,7 +14,7 @@ gem 'redis'
 gem 'redis-namespace'
 
 # CI Testing
-gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
 gem 'brakeman', require: false
 
 # CORS
