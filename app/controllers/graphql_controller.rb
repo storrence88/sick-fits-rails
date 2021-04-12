@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
@@ -12,10 +14,12 @@ class GraphqlController < ApplicationController
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = SickFitsRailsSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = SickFitsRailsSchema.execute(query, variables: variables, context: context,
+                                                operation_name: operation_name)
     render json: result
-  rescue => e
+  rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development e
   end
 
@@ -33,7 +37,8 @@ class GraphqlController < ApplicationController
     when Hash
       variables_param
     when ActionController::Parameters
-      variables_param.to_unsafe_hash # GraphQL-Ruby will validate name and type of incoming variables.
+      # GraphQL-Ruby will validate name and type of incoming variables.
+      variables_param.to_unsafe_hash
     when nil
       {}
     else
@@ -41,10 +46,11 @@ class GraphqlController < ApplicationController
     end
   end
 
-  def handle_error_in_development(e)
-    logger.error e.message
-    logger.error e.backtrace.join("\n")
+  def handle_error_in_development(event)
+    logger.error event.message
+    logger.error event.backtrace.join("\n")
 
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+    render json: { errors: [{ message: event.message, backtrace: event.backtrace }], data: {} },
+           status: :internal_server_error
   end
 end

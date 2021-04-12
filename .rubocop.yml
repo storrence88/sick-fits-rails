@@ -1,6 +1,7 @@
 require: rubocop-rails
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'spec/**/*'
     - 'lib/tasks/ci.rake'
@@ -27,7 +28,7 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 Style/Documentation:
   Enabled: false
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
 Style/CollectionMethods:
   Enabled: false
