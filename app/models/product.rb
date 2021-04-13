@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: products
@@ -6,7 +8,7 @@
 #  description :text             not null
 #  name        :string           not null
 #  price       :integer          not null
-#  status      :string           default("DRAFT"), not null
+#  status      :string           default("draft"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint(8)        not null
@@ -20,6 +22,11 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
+  extend Enumerize
+  STATUSES = %i[draft available unavailable].freeze
+
+  enumerize :status, in: STATUSES, default: :draft, predicates: true, scope: :shallow
+
   belongs_to :user
 
   validates :name, :description, :price, :status, presence: true
