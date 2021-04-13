@@ -47,7 +47,7 @@ gem 'kaminari'
 gem 'ransack'
 
 # Seed Data
-gem 'faker'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'factory_bot_rails'
 
 # Server
@@ -79,6 +79,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'annotate'
   gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
+  gem 'rubocop-rspec', require: false
   gem 'rspec-its'
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers'
