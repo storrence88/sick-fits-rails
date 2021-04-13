@@ -24,6 +24,7 @@ gem 'rack-cors'
 gem 'pg', '~> 1.1'
 gem 'hookup'
 gem 'enumerize'
+gem 'name_of_person'
 
 # GraphQL
 gem 'graphql'

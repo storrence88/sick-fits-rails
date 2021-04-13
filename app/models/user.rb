@@ -11,8 +11,9 @@
 #  confirmed_at           :datetime
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string
 #  image                  :string
-#  name                   :string
+#  last_name              :string
 #  nickname               :string
 #  provider               :string           default("email"), not null
 #  remember_created_at    :datetime
@@ -32,9 +33,13 @@
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
 class User < ApplicationRecord
+  has_person_name
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :first_name, :last_name, presence: true
+
   include GraphqlDevise::Concerns::Model
 end
