@@ -39,6 +39,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :products, dependent: :destroy
+
   validates :first_name, :last_name, presence: true
 
   include GraphqlDevise::Concerns::Model
