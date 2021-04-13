@@ -82,6 +82,7 @@ group :development, :test do
   gem 'rspec-its'
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers'
+  gem 'database_cleaner'
 
   # For nicer error display
   gem 'better_errors'
