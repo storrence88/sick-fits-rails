@@ -26,6 +26,8 @@ Rails:
   Enabled: true
 Style/EmptyMethod:
   Enabled: false
+Style/StringLiterals:
+  Enabled: true
 Style/PercentLiteralDelimiters:
   Enabled: false
 Style/Documentation:
