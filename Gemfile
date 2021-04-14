@@ -8,6 +8,9 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 gem 'devise-async' # For sending devise emails on background
 gem 'devise-security' # Security functions for devise like adding password complexity
 
+# Assets
+gem 'cloudinary'
+
 # Background Processing
 gem 'sidekiq'
 gem 'redis'

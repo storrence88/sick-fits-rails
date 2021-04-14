@@ -23,11 +23,12 @@
 #
 class Product < ApplicationRecord
   extend Enumerize
-  STATUSES = %i[draft available unavailable].freeze
 
+  STATUSES = %i[draft available unavailable].freeze
   enumerize :status, in: STATUSES, default: :draft, predicates: true, scope: :shallow
 
   belongs_to :user
+  has_one_attached :image
 
   validates :name, :description, :price, :status, presence: true
 end
