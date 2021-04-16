@@ -12,6 +12,8 @@ module Queries
       end
 
       field :users, Types::UserType.connection_type, null: true
+
+      field :products, [Types::ProductType], null: true
     end
 
     # Resolver for current_user field
