@@ -28,6 +28,8 @@ Style/EmptyMethod:
   Enabled: false
 Style/StringLiterals:
   Enabled: true
+Style/SingleArgumentDig:
+  Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
 Style/Documentation:
