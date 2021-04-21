@@ -22,6 +22,7 @@ AllCops:
     - 'spec/support/**/*'
     - 'spec/fixtures/**/*'
     - 'node_modules/**/*'
+    - 'spec/**/*'
 Rails:
   Enabled: true
 Style/EmptyMethod:
