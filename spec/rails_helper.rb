@@ -45,13 +45,17 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+Warden.test_mode!
+
 FactoryBot.register_strategy(:graphql_attributes_for, Strategies::GraphqlAttributesFor)
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
-  
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include GraphqlDeviseAuth, type: :graphql
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with :truncation
